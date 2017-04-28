@@ -1,3 +1,26 @@
+<?php
+header('Cache-Control: no cache'); //no cache
+session_cache_limiter('private_no_expire'); // works
+	session_start();
+	if(isset($_SESSION['user'])){
+		//header("location: index.php");
+		echo "something1";
+	}else{
+		if(isset($_POST['login'])){
+			extract($_POST);
+			include("./dbconnect.php");
+			$query="select * from users where username='$username' and password ='$password'";
+			echo $query;
+			$result=$con->query($query);
+			if ($result->num_rows == 1) {
+				header('Location: www.google.com');
+			}else{
+				//header('Location: login.php?err=wrong username or password');
+			}
+			$con->close();
+		}
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,6 +39,7 @@
   <body onload="loginLoad()" >
 	<div class="container">
 	<div class="centerCard">
+	<form method="post">
 		<div class="formContent">
 	<center> <h1>LOGIN</h1></center>
 		<div class="form-group">
@@ -25,11 +49,13 @@
 		<div class="form-group">
 			<label for="password" >Password</label>
 			<input type="password" name="password" id="password" placeholder="password" class="form-control"/>
+			<p style="color: red;"><?php if (isset($_GET['err'])) echo $_GET['err'];?></p>
 		</div>
 		<div class="form-group" align="center">
-			<button type="submit" class="btn btn-primary">Login</button>
+			<button type="submit" name="login" value="login" class="btn btn-primary">Login</button>
 		</div>
 		</div>
+		</form>
 	</div>
 	</div>
 
