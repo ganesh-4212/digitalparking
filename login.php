@@ -3,19 +3,18 @@ header('Cache-Control: no cache'); //no cache
 session_cache_limiter('private_no_expire'); // works
 	session_start();
 	if(isset($_SESSION['user'])){
-		//header("location: index.php");
-		echo "something1";
+		header("location: index.php");
 	}else{
 		if(isset($_POST['login'])){
 			extract($_POST);
 			include("./dbconnect.php");
 			$query="select * from users where username='$username' and password ='$password'";
-			echo $query;
 			$result=$con->query($query);
 			if ($result->num_rows == 1) {
-				header('Location: www.google.com');
+				$_SESSION['user']=$username;
+                header("location: index.php");
 			}else{
-				//header('Location: login.php?err=wrong username or password');
+				header('Location: login.php?err=wrong username or password');
 			}
 			$con->close();
 		}

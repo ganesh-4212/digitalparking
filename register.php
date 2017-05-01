@@ -9,37 +9,50 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-	<LINK href="style1.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	<link href="css/style1.css" rel="stylesheet" type="text/css">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/login.js" type="text/javascript"></script>
   </head>
-  <body>
-     <center> <h1>LOGIN</h1></center>
-	<div class="input-group input-group-lg">
-  <span class="input-group-addon" id="sizing-addon1">Name</span>
-  <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
-</div><br /><br />
-<div class="input-group input-group-lg">
-  <span class="input-group-addon" id="sizing-addon1">Email</span>
-  <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
-</div><br /><br />
-<div class="input-group input-group-lg">
-  <span class="input-group-addon" id="sizing-addon1">City</span>
-  <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
-</div><br /><br />
-<div class="input-group input-group-lg">
-  <span class="input-group-addon" id="sizing-addon1">Mobile Number</span>
-  <input type="number_format" class="form-control" placeholder="Number" aria-describedby="sizing-addon1">
-</div><br /><br />
-<center><div class="btn-group" role="group" aria-label="...">
-  <button type="button"  class="btn btn-default">Submit</button></center>
-  
-</div>
+  <body onload="loginLoad()" >
+	<div class="container">
+	<div class="centerCard">
+	<form method="post">
+		<div class="formContent">
+	<center> <h1>REGISTER</h1></center>
+		<div class="form-group">
+			<label for="username" >Username</label>
+			<input type="text" name="username" id="username" placeholder="Username" class="form-control" />
+		</div>
+		<div class="form-group">
+			<label for="Number" >Phone No:</label>
+			<input type="text" name="number" id="number" placeholder="Phone" class="form-control" />
+		</div><div class="form-group">
+			<label for="email" >E-Mail</label>
+			<input type="text" name="email" id="email" placeholder="E-Mail" class="form-control" />
+		</div>
+		<div class="form-group">
+			<label for="address" >Address</label>
+			<input type="text" name="address" id="address" placeholder="Address" class="form-control" />
+		</div>
+		<div class="form-group">
+			<label for="password" >Password</label>
+			<input type="password" name="password" id="password" placeholder="Password" class="form-control"/>
+			<p style="color: red;"><?php if (isset($_GET['err'])) echo $_GET['err'];?></p>
+		</div>
+		<div class="form-group">
+			<label for="password" >Confirm Password</label>
+			<input type="password" name="password" id="password" placeholder="Re-Password" class="form-control"/>
+			<p style="color: red;"><?php if (isset($_GET['err'])) echo $_GET['err'];?></p>
+		</div>
+		<div class="form-group" align="center">
+			
+			<button type="submit" name="register"" value="register" class="btn btn-primary">REGISTER</button>
+			<button type="clear" name="clear" value="" class="btn btn-primary">CLEAR</button>
+		</div>
+		</div>
+		</form>
+	</div>
+	</div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
