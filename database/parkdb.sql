@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2017 at 11:23 AM
+-- Generation Time: May 16, 2017 at 07:41 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -61,10 +61,11 @@ CREATE TABLE `slot` (
 --
 
 INSERT INTO `slot` (`id`, `vtype_id`, `priority`, `plot_id`, `is_taken`) VALUES
-(1, 101, 3, 1, 1),
-(2, 101, 2, 1, 1),
-(3, 101, 1, 2, 1),
-(4, 101, 2, 2, 1);
+(1, 101, 3, 1, 0),
+(2, 101, 2, 1, 0),
+(3, 101, 1, 2, 0),
+(4, 101, 2, 2, 0),
+(5, 101, 5, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -74,9 +75,9 @@ INSERT INTO `slot` (`id`, `vtype_id`, `priority`, `plot_id`, `is_taken`) VALUES
 
 CREATE TABLE `users` (
   `id` int(15) NOT NULL,
-  `username` text NOT NULL,
-  `password` text NOT NULL,
-  `name` text NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(60) NOT NULL,
+  `name` varchar(25) NOT NULL,
   `email` varchar(30) NOT NULL,
   `address` varchar(30) NOT NULL,
   `phone` int(30) NOT NULL
@@ -87,7 +88,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `name`, `email`, `address`, `phone`) VALUES
-(1, 'ganesh', 'password', 'Ganesh Poojary', 'ganesh4212@gmail.com', 'Uppunda', 123456);
+(1, 'ganesh', 'password', 'Ganesh Poojary', 'ganesh4212@gmail.com', 'Uppunda', 123456),
+(2, 'santhosh', 'santhosh123', 'santhosh', 'santhu@gmail', 'banglore', 5776886);
 
 -- --------------------------------------------------------
 
@@ -111,11 +113,14 @@ CREATE TABLE `vehicle` (
 
 INSERT INTO `vehicle` (`id`, `vnum`, `owner`, `login`, `logout`, `slot_id`, `vtype_id`) VALUES
 (1, '101', 'sfsfsdf', '2017-05-01 14:56:01', '2017-05-01 14:56:01', NULL, NULL),
-(2, '', '', '2017-05-01 15:02:02', NULL, NULL, 101),
-(4, 'ka20b142', 'Harish', '2017-05-01 15:43:50', NULL, 2, 101),
-(5, 'ka20b143', 'Nagesh', '2017-05-01 15:44:07', NULL, 1, 101),
-(6, 'ka20b144', 'Umesh', '2017-05-01 15:44:19', NULL, 3, 101),
-(9, 'ka20 b4212', 'Ganesh poojary', '2017-05-01 16:18:45', NULL, 4, 101);
+(2, '', '', '2017-05-01 15:02:02', '2017-05-17 00:30:11', 5, 101),
+(4, 'ka20b142', 'Harish', '2017-05-01 15:43:50', '2017-05-17 00:40:19', 2, 101),
+(5, 'ka20b143', 'Nagesh', '2017-05-01 15:44:07', '2017-05-17 01:05:25', 1, 101),
+(6, 'ka20b144', 'Umesh', '2017-05-01 15:44:19', '2017-05-17 01:04:00', 3, 101),
+(9, 'ka20 b4212', 'Ganesh poojary', '2017-05-01 16:18:45', '2017-05-17 01:05:40', 4, 101),
+(10, 'ka20b142', 'Nagesh', '2017-05-17 00:40:49', '2017-05-17 00:41:03', 2, 101),
+(11, 'ka20b4521', 'Nagesh', '2017-05-17 01:05:57', '2017-05-17 01:06:06', 2, 101),
+(12, 'ka20b456', 'Nagesh', '2017-05-17 01:08:15', '2017-05-17 01:08:22', 2, 101);
 
 -- --------------------------------------------------------
 
@@ -159,7 +164,8 @@ ALTER TABLE `slot`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `vehicle`
@@ -187,17 +193,17 @@ ALTER TABLE `parking`
 -- AUTO_INCREMENT for table `slot`
 --
 ALTER TABLE `slot`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `vehicle`
 --
 ALTER TABLE `vehicle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
