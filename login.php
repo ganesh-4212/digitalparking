@@ -1,9 +1,11 @@
 <?php
-header('Cache-Control: no cache'); //no cache
-session_cache_limiter('private_no_expire'); // works
 	session_start();
-	if(isset($_SESSION['user'])){
-		header("location: index.php");
+   if(isset($_GET['logout'])  and ($_GET['logout']==true)){
+       $_SESSION['login']=false;
+     header("Refresh:0; url=login.php");
+    }
+	else if( isset($_SESSION['login']) and ($_SESSION['login']==true) ){
+        header("location: index.php");
 	}else{
 		if(isset($_POST['login'])){
 			extract($_POST);
@@ -11,7 +13,8 @@ session_cache_limiter('private_no_expire'); // works
 			$query="select * from users where username='$username' and password ='$password'";
 			$result=$con->query($query);
 			if ($result->num_rows == 1) {
-				$_SESSION['user']=$username;
+			$_SESSION['user']=$username;
+                 $_SESSION['login']=true;
                 header("location: index.php");
 			}else{
 				header('Location: login.php?err=wrong username or password');

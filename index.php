@@ -72,7 +72,7 @@
                     <li><a href="#">Contact</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li><a href="login.php?logout=true"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -89,7 +89,7 @@
                 <form method="get" onsubmit="event.preventDefault();  formSubmit(this.elements);">
                     <div class="form-group">
                         <label for="vnum">Vehicle number : </label>
-                        <input type="text" class="form-control" placeholder="Vehicle number" name="vnum">
+                        <input type="text" class="form-control" placeholder="Vehicle number" name="vnum" oninput="checkAlreadyAlloted(this.value.trim())">
                     </div>
                     <div class="form-group">
                         <label for="vtype">Vehicle type : </label>
@@ -100,9 +100,10 @@
                     </div>
                     <div class="form-group">
                         <label for="">Vehicle Owner : </label>
-                        <input class="form-control" name="owner" placeholder="vehicle owner" />
+                        <input class="form-control" name="owner" id="owner" placeholder="vehicle owner" />
                     </div>
-                    <button type="submit" class="btn btn-primary" name="submit" value="submit">Allot</button>
+                    <button type="submit" class="btn btn-primary" id="allotSlot" name="submit" value="submit">Allot</button>
+                    <button class="btn btn-primary" id="releaseSlot" style="display: none;" onclick="event.preventDefault(); releaseSlots()" >Release</button>
                 </form>
             </div>
         </div>
@@ -174,7 +175,7 @@
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
 </body>
